@@ -17,11 +17,11 @@ module.exports = function(rufio) {
 
 	rufio.hooks.on('afterWriteItem', function(item, done) {
 		// Check environmant to see if we should write this data type
-		if (this.config.get('ENVIRONMENT') == 'dev' || item.meta('status') == 'Published') {
+		if (this.ENVIRONMENT == 'dev' || item.meta('status') == 'Published') {
 
 			// The file we are going to write
 			var permalink = this.filters.apply('template', item.type.config.jsonPermalink, item.export());
-			var writePath = path.join(this.config.get('BUILD_DIR'), permalink);
+			var writePath = path.join(this.BUILD_DIR, permalink);
 
 			// Export the item
 			var me = item.export();
